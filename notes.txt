@@ -1,0 +1,30 @@
+steps to problem solving
+1. understand the problem
+	can I restate the problem in my own words?
+	what are the inputs that go into the problem (data types, assumptions, number of inputs, etc)?
+	what are the outputs that should come from this problem?
+	Can the outputs be determined from the inputs?
+	How should I label the important pieces of data that are a part of the problem?
+2. Explore concrete examples
+	User stories!
+	start with simple examples (input -> output)
+	progress to more complex
+	explore examples with empty inputs
+	explore examples with invalid inputs
+3. Break it down
+	Write out explicit steps to solve the problem
+4. Solve/simplify
+	if you can't solve the problem, solve a simpler problem
+	find the core difficulty
+	temporarily ignore it
+	return to the difficulty once the rest has been solved
+	this process can be recursive
+5. Look back and refactor
+	can you check the result?
+	can you derive the result differently?
+	can you understand it at a glance?
+	can you use the result or method for some other problem?
+	can you improve the performance of your solution?
+	can you think of other ways to refactor?
+	how have other people solved this problem?
+	
