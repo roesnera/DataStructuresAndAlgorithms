@@ -1,0 +1,29 @@
+Frequency counter
+	this pattern uses objects or sets to collect values/frequencies of values
+	this can often avoid the need for nested loops or O(N^2) operations with arrays/strings
+	the appraoch is basically to loop over some object/array and track frequency of occurences of each unique item
+	this allows you to avoid having to loop through one object inside of a loop through some (other) object
+	while this involves more looping, there does not need to be any nested looping
+	ex
+	function same(obj1, obj2){
+		// create a freqCounter obj for each argument
+		// loop through obj1 and mutate freqCounter for obj1 to track frequency of entries
+		// do the same for obj2
+		// loop for comparison
+		}
+	seems to be useful for when you want to make some complex comparison between two arbitrary objects for some mechanical similarity
+	e.g. anagrams, mathematical relationships, etc.
+	check anagrams.ts function for example
+
+Multiple pointers
+	creating pointers or values that correspond to an index or position and move towarsd the beginning end or middle mbased on a certain condition
+	Very efficient for solving problems with minimal space complexity
+	start with two indices (could be outermost, or adjacent, or arbitrary), move one or the other pointer inwards until a condition is met
+	check countUniqueValues function for example
+
+sliding window
+divide and conquer
+dynamic programming
+greedy algorithms
+backtracking
+more!
