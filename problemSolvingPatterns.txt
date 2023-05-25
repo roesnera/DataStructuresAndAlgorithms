@@ -22,7 +22,18 @@ Multiple pointers
 	check countUniqueValues function for example
 
 sliding window
+	good for iterating over an array when the goal is to find some subarray or some operation performed on some subarray
+	instead of creating a new array each time, we just perform whatever operation on a subarray,
+	then move forward in the original array and track the changes by looking at whatever element shifted out and whatever element pushed in
+
 divide and conquer
+	dividing a data set into smaller chunks and then repeating a process with a subset
+	good for decreasing time complexity
+	looking for a value in a sorted array
+		one approach would be to iterate over the entire array
+		divide and conquer would jump to the halfway point, then leverage the fact that the array is sorted to determine which subset (left or right) to search in (if the element jumped to is not the element being searched for)
+
+
 dynamic programming
 greedy algorithms
 backtracking

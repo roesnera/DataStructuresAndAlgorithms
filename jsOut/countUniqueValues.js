@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+// returns number of unique values in an array
+// array must be sorted!
 function countUniqueValues(arr) {
     let pointer1 = 0, pointer2 = 1;
     if (arr.length === 0)
