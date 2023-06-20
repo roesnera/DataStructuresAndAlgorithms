@@ -1,0 +1,14 @@
+linear search
+    - search each element in sequence
+    - for unsorted data, this approach is not the absolute worst
+    - in JS, .indexOf(), .includes(), .find(), and .findIndex() all work this way
+    - works by visiting one item at a time, moving one index per iteration, and checking if it is the item that we are looking for
+    - time complexity best: O(1), worst: O(n), average: O(n)
+binary search
+    - searches at the middle point of an array of elements
+    - only works on sorted arrays!!!!
+    - leverages the fact that the array is sorted by comparing the item being sought with the item at halfway
+    - 
+naive string search
+
+KPM sring search
