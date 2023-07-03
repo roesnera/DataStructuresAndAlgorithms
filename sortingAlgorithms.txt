@@ -1,0 +1,17 @@
+Sorting - the process of rearranging items in a collection so that they are ordered in a particular way.
+requires a swap function in order to switch the items at given locations in an array upon comparison
+
+JS Array.sort()
+    - sorts according to String unicode code points
+    - this means that sorting numbers gets real funky
+    - ^ it will just sort by the first digit in a number as if it were a String
+    - you can pass in a custom sorting algorithm
+        - if your function returns a negative number, a should come before b
+        - if your function returns a positive number, a should come after b
+        - otherwise, a&b will be treated as sortable together
+
+
+Bubble Sort
+    - not all that efficient
+    - not super common
+    - sorting algorithm where larger items bubble up to the top
