@@ -12,20 +12,24 @@
 */
 function bubbleSort(arr, compare, swap) {
     for (let i = 0; i < arr.length - 1; i++) {
+        let noSwaps = true;
         for (let j = 0; j < arr.length - 1 - i; j++) {
             const comparison = compare(arr[j], arr[j + 1]);
             if (comparison > 0) {
                 swap(arr, j, j + 1);
+                noSwaps = false;
             }
         }
+        if (noSwaps)
+            break;
     }
     return arr;
 }
-function compare(a, b) {
+function compareNums(a, b) {
     return a - b;
 }
 const swap = (arr, ind1, ind2) => {
     [arr[ind1], arr[ind2]] = [arr[ind2], arr[ind1]];
 };
 let arr = [1, 2, 0, 9, 7, 5, 6];
-console.log(bubbleSort(arr, compare, swap));
+console.log(bubbleSort(arr, compareNums, swap));

@@ -15,3 +15,4 @@ Bubble Sort
     - not all that efficient
     - not super common
     - sorting algorithm where larger items bubble up to the top
+    - time complexity average: O(n^2), best O(n)
