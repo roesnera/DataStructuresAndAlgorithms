@@ -16,3 +16,7 @@ Bubble Sort
     - not super common
     - sorting algorithm where larger items bubble up to the top
     - time complexity average: O(n^2), best O(n)
+
+Selection Sort
+    - similar to bubble sort
+    - instead of placing larger values at the end, it places small values into a sorted position
