@@ -20,3 +20,9 @@ Bubble Sort
 Selection Sort
     - similar to bubble sort
     - instead of placing larger values at the end, it places small values into a sorted position
+    - time complexity average: O(n^2), best O(n)
+    - in selection sort, we only swap once per outer loop, rather than once per inner loop
+    - so it is better than bubble sort if you care about the number of swaps, but otherwise not very good at all
+
+Insertion Sort
+    - creates a sorted half of the array and inserts values into the sorted position of that half
