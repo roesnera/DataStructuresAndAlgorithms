@@ -32,11 +32,12 @@ Merge Sort
     - decomposes arrays into smaller subarrays of 0 or 1 elements
     - each of these subarrays are sorted!
     - then we merge them back together
-    - time complexity is O(nlogn) in all cases, there aren't edge cases here because it works the same way no matter what
+    - time complexity is O(n logn) in all cases, there aren't edge cases here because it works the same way no matter what
     - space complexity is O(n)
 
 Quick Sort
     - like merge sort, exploits the sorted nature of 0 or 1 element arrays
     - then uses a "pivot" to find the index where one element should end up in the sorted array
     - then we sort either side of the "pivot"
-    
+    - time complexity best: O(n logn), avg: O(n logn), worst: O(n^2)
+    - space complexity O(logn)
