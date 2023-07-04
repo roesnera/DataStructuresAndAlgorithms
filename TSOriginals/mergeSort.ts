@@ -39,7 +39,7 @@ const arr2: number[] = [1, 5, 6];
 const fullArr: number[] = [...arr1, ...arr2];
 // console.log(merge(arr2,arr1));
 const bigRandArr: number[] = [];
-for(let i = 0; i<10000; i++){
+for(let i = 0; i<100000; i++){
     let temp = Math.random();
     bigRandArr.push(temp);
 }

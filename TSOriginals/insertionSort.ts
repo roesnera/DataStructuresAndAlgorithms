@@ -17,6 +17,13 @@ function insertionSort<T>(arr: T[]): T[] {
 
 let arr = [2, 1, 9, 76, 4];
 
-console.log(arr);
-console.log(insertionSort(arr));
+// console.log(arr);
+// console.log(insertionSort(arr));
 
+const bigRandArr: number[] = [];
+for(let i = 0; i<100000; i++){
+    let temp = Math.random();
+    bigRandArr.push(temp);
+}
+console.log(bigRandArr);
+console.log(insertionSort(bigRandArr));
