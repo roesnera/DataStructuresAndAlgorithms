@@ -47,6 +47,13 @@ class SinglyLinkedList<T> {
         this.length--;
         return toReturn;
     }
+    traverse(){
+        let current: LLNode<T>|null = this.head;
+        while(current){
+            console.log(current.val);
+            current = current.next;
+        }
+    }
 }
 
 const first = new LLNode("Hi");
@@ -60,5 +67,8 @@ myList.push("second val");
 myList.push("third val");
 myList.push("last val");
 console.log(myList.head, myList.tail, myList.length);
-myList.pop();
+myList.traverse();
+const poppedNode: LLNode<string>|null = myList.pop();
+console.log(`Popped: ${poppedNode?.val}, next is ${poppedNode?.next}`);
 console.log(myList.head, myList.tail, myList.length);
+myList.traverse();
