@@ -14,14 +14,13 @@ class LLNode<T> implements LinkedListNode<T> {
 }
 
 class SinglyLinkedList<T> {
-    head: LLNode<T>;
-    tail: LLNode<T>;
+    head: LLNode<T> | null;
+    tail: LLNode<T> | null;
     length: number;
-    constructor(val: T){
-        const node = new LLNode(val);
-        this.head = node;
-        this.tail = node;
-        this.length = 1;
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
     }
     push(val: T){
         const nodeToAdd = new LLNode(val);
@@ -35,16 +34,20 @@ class SinglyLinkedList<T> {
         this.length++;
     }
     pop(){
-        let current: LLNode<T> = this.head;
-        if(current.next!==null){
-            while (current.next!==null&&current.next.next!==null){
-                current=current.next;
+        let current = this.head;
+        if(current?.next!==null){
+            while (current?.next!==null&&current?.next!==undefined&&current?.next.next!==null){
+                current=current?.next;
             }
         }
-        const toReturn = current.next;
-        current.next=null;
+        const toReturn = current?.next;
+        current ? current.next=null:null;
         this.tail = current;
         this.length--;
+        if(this.length===0){
+            this.head = null;
+            this.tail = null;
+        }
         return toReturn;
     }
     traverse(){
@@ -62,13 +65,14 @@ first.next.next = new LLNode("how");
 first.next.next.next = new LLNode("are");
 first.next.next.next.next = new LLNode("you");
 
-const myList = new SinglyLinkedList("first val");
+const myList = new SinglyLinkedList();
+myList.push("first val");
 myList.push("second val");
 myList.push("third val");
 myList.push("last val");
 console.log(myList.head, myList.tail, myList.length);
 myList.traverse();
-const poppedNode: LLNode<string>|null = myList.pop();
+const poppedNode: LLNode<any>|null|undefined = myList.pop();
 console.log(`Popped: ${poppedNode?.val}, next is ${poppedNode?.next}`);
 console.log(myList.head, myList.tail, myList.length);
 myList.traverse();

@@ -6,11 +6,10 @@ class LLNode {
     }
 }
 class SinglyLinkedList {
-    constructor(val) {
-        const node = new LLNode(val);
-        this.head = node;
-        this.tail = node;
-        this.length = 1;
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
     }
     push(val) {
         const nodeToAdd = new LLNode(val);
@@ -26,15 +25,19 @@ class SinglyLinkedList {
     }
     pop() {
         let current = this.head;
-        if (current.next !== null) {
-            while (current.next !== null && current.next.next !== null) {
-                current = current.next;
+        if ((current === null || current === void 0 ? void 0 : current.next) !== null) {
+            while ((current === null || current === void 0 ? void 0 : current.next) !== null && (current === null || current === void 0 ? void 0 : current.next) !== undefined && (current === null || current === void 0 ? void 0 : current.next.next) !== null) {
+                current = current === null || current === void 0 ? void 0 : current.next;
             }
         }
-        const toReturn = current.next;
-        current.next = null;
+        const toReturn = current === null || current === void 0 ? void 0 : current.next;
+        current ? current.next = null : null;
         this.tail = current;
         this.length--;
+        if (this.length === 0) {
+            this.head = null;
+            this.tail = null;
+        }
         return toReturn;
     }
     traverse() {
@@ -50,7 +53,8 @@ first.next = new LLNode("there");
 first.next.next = new LLNode("how");
 first.next.next.next = new LLNode("are");
 first.next.next.next.next = new LLNode("you");
-const myList = new SinglyLinkedList("first val");
+const myList = new SinglyLinkedList();
+myList.push("first val");
 myList.push("second val");
 myList.push("third val");
 myList.push("last val");
