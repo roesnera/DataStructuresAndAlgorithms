@@ -14,8 +14,8 @@ class LLNode<T> implements LinkedListNode<T> {
 }
 
 class SinglyLinkedList<T> {
-    head: LLNode<T> | null;
-    tail: LLNode<T> | null;
+    head: LinkedListNode<T> | null;
+    tail: LinkedListNode<T> | null;
     length: number;
     constructor(){
         this.head = null;
@@ -33,7 +33,8 @@ class SinglyLinkedList<T> {
         }
         this.length++;
     }
-    pop(){
+    pop(): LinkedListNode<T> | null{
+        if(this.length === 0 || !!!this.head) return null;
         let current = this.head;
         if(current?.next!==null){
             while (current?.next!==null&&current?.next!==undefined&&current?.next.next!==null){
@@ -57,6 +58,27 @@ class SinglyLinkedList<T> {
             current = current.next;
         }
     }
+    shift(): LinkedListNode<T>|null{
+        if(this.length===0||!!!this.head) return null;
+        const toReturn = this.head;
+        this.head = this.head.next;
+        this.length--;
+        if(this.length===0){
+            this.tail = null;
+        }
+        return toReturn;
+    }
+    unshift(val: T){
+        const newNode = new LLNode(val);
+        if(!!!this.head){
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+    }
 }
 
 const first = new LLNode("Hi");
@@ -72,7 +94,15 @@ myList.push("third val");
 myList.push("last val");
 console.log(myList.head, myList.tail, myList.length);
 myList.traverse();
-const poppedNode: LLNode<any>|null|undefined = myList.pop();
+const poppedNode: LinkedListNode<any>|null = myList.pop();
 console.log(`Popped: ${poppedNode?.val}, next is ${poppedNode?.next}`);
 console.log(myList.head, myList.tail, myList.length);
 myList.traverse();
+const shiftedNode = myList.shift();
+console.log(`Shifted head: ${shiftedNode?.val}`);
+myList.traverse();
+console.log(myList.length);
+myList.unshift(shiftedNode?.val);
+console.log(`Unshifted`);
+myList.traverse();
+console.log(myList.length);

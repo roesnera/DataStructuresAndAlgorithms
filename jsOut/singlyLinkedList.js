@@ -24,6 +24,8 @@ class SinglyLinkedList {
         this.length++;
     }
     pop() {
+        if (this.length === 0 || !!!this.head)
+            return null;
         let current = this.head;
         if ((current === null || current === void 0 ? void 0 : current.next) !== null) {
             while ((current === null || current === void 0 ? void 0 : current.next) !== null && (current === null || current === void 0 ? void 0 : current.next) !== undefined && (current === null || current === void 0 ? void 0 : current.next.next) !== null) {
@@ -47,6 +49,29 @@ class SinglyLinkedList {
             current = current.next;
         }
     }
+    shift() {
+        if (this.length === 0 || !!!this.head)
+            return null;
+        const toReturn = this.head;
+        this.head = this.head.next;
+        this.length--;
+        if (this.length === 0) {
+            this.tail = null;
+        }
+        return toReturn;
+    }
+    unshift(val) {
+        const newNode = new LLNode(val);
+        if (!!!this.head) {
+            this.head = newNode;
+            this.tail = this.head;
+        }
+        else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+    }
 }
 const first = new LLNode("Hi");
 first.next = new LLNode("there");
@@ -64,3 +89,11 @@ const poppedNode = myList.pop();
 console.log(`Popped: ${poppedNode === null || poppedNode === void 0 ? void 0 : poppedNode.val}, next is ${poppedNode === null || poppedNode === void 0 ? void 0 : poppedNode.next}`);
 console.log(myList.head, myList.tail, myList.length);
 myList.traverse();
+const shiftedNode = myList.shift();
+console.log(`Shifted head: ${shiftedNode === null || shiftedNode === void 0 ? void 0 : shiftedNode.val}`);
+myList.traverse();
+console.log(myList.length);
+myList.unshift(shiftedNode === null || shiftedNode === void 0 ? void 0 : shiftedNode.val);
+console.log(`Unshifted`);
+myList.traverse();
+console.log(myList.length);
