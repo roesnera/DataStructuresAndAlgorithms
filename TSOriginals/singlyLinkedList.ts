@@ -79,6 +79,14 @@ class SinglyLinkedList<T> {
         }
         this.length++;
     }
+    get(ind: number): LinkedListNode<T>|null{
+        if(ind < 0) return null;
+        let current: LLNode = this.head;
+        for(let i = 0; i<ind; i++){
+            current = current.next;
+        }
+        return current;
+    }
 }
 
 const first = new LLNode("Hi");
@@ -106,3 +114,6 @@ myList.unshift(shiftedNode?.val);
 console.log(`Unshifted`);
 myList.traverse();
 console.log(myList.length);
+
+const gottenNode: LinkedListNode<any>|null = myList.get(1);
+console.log(`Got a node at index 1: val: ${gottenNode?.val}, next: ${gottenNode?.next}`);
