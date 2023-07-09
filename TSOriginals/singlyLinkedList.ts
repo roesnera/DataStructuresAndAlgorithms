@@ -81,15 +81,25 @@ class SinglyLinkedList<T> {
     }
     get(ind: number): LinkedListNode<T>|null{
         if(ind < 0) return null;
-        let current: LLNode = this.head;
+        let current: LLNode<T>|null = this.head;
         for(let i = 0; i<ind; i++){
-            current = current.next;
+            current = current?.next;
         }
         return current;
     }
+    set(ind: number, val: T): void {
+        if(!(ind < 0 && ind >=this.length)){
+            let current = this.head;
+            for(let i = 0; i<ind; i++) {
+                if(current && !!current.next){
+                    current = current.next;
+                    }
+                }
+            if(current) current.val = val;
+        }
 }
 
-const first = new LLNode("Hi");
+const first: LLNode<String> = new LLNode("Hi");
 first.next = new LLNode("there");
 first.next.next = new LLNode("how");
 first.next.next.next = new LLNode("are");
