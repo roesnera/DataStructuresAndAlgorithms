@@ -103,7 +103,16 @@ class SinglyLinkedList<T> {
         this.setLength();
     }
     insert(ind: number, val: T): void {
-        if(!(ind < 0 && ind >=this.length)){
+        const node: LinkedListNode<T> = new LLNode(val);
+        if(ind === 0){
+            if(this.head){
+                node.next = this.head;
+            } else {
+                this.tail = node;
+            }
+            this.head = node;
+        }
+        else if(!(ind < 0 && ind >=this.length)){
             let current = this.head;
             for(let i = 1; i<ind; i++) {
                 if(current && !!current.next){
@@ -112,7 +121,6 @@ class SinglyLinkedList<T> {
                 }
             if(!!!current) return;
             const next = current.next;
-            const node: LinkedListNode<T> = new LLNode(val);
             current.next = node;
             node.next = next;
          }
@@ -121,17 +129,23 @@ class SinglyLinkedList<T> {
     remove(ind: number): void {
         if(!(ind < 0 && ind >=this.length)){
             let current = this.head;
-            for(let i = 1; i<ind; i++) {
-                if(current && !!current.next){
-                    current = current.next;
+            if(ind === 0&&current) {
+                this.head = current?.next;
+            }
+            else {
+                for(let i = 1; i<ind; i++) {
+                    if(current && !!current.next){
+                        current = current.next;
+                        }
                     }
+                if(!!!current) return;
+                if(current.next&&!!current.next.next){
+                    const next = current.next.next;
+                    current.next = next;
+                } else {
+                    current.next = null;
+                    this.tail = current;
                 }
-            if(!!!current) return;
-            if(current.next&&!!current.next.next){
-                const next = current.next.next;
-                current.next = next;
-            } else {
-                current.next = null;
             }
          }
         this.setLength();

@@ -98,7 +98,17 @@ class SinglyLinkedList {
         this.setLength();
     }
     insert(ind, val) {
-        if (!(ind < 0 && ind >= this.length)) {
+        const node = new LLNode(val);
+        if (ind === 0) {
+            if (this.head) {
+                node.next = this.head;
+            }
+            else {
+                this.tail = node;
+            }
+            this.head = node;
+        }
+        else if (!(ind < 0 && ind >= this.length)) {
             let current = this.head;
             for (let i = 1; i < ind; i++) {
                 if (current && !!current.next) {
@@ -108,7 +118,6 @@ class SinglyLinkedList {
             if (!!!current)
                 return;
             const next = current.next;
-            const node = new LLNode(val);
             current.next = node;
             node.next = next;
         }
@@ -117,19 +126,25 @@ class SinglyLinkedList {
     remove(ind) {
         if (!(ind < 0 && ind >= this.length)) {
             let current = this.head;
-            for (let i = 1; i < ind; i++) {
-                if (current && !!current.next) {
-                    current = current.next;
-                }
-            }
-            if (!!!current)
-                return;
-            if (current.next && !!current.next.next) {
-                const next = current.next.next;
-                current.next = next;
+            if (ind === 0 && current) {
+                this.head = current === null || current === void 0 ? void 0 : current.next;
             }
             else {
-                current.next = null;
+                for (let i = 1; i < ind; i++) {
+                    if (current && !!current.next) {
+                        current = current.next;
+                    }
+                }
+                if (!!!current)
+                    return;
+                if (current.next && !!current.next.next) {
+                    const next = current.next.next;
+                    current.next = next;
+                }
+                else {
+                    current.next = null;
+                    this.tail = current;
+                }
             }
         }
         this.setLength();
