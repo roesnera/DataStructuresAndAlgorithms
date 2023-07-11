@@ -21,7 +21,7 @@ class SinglyLinkedList {
             this.tail.next = nodeToAdd;
             this.tail = nodeToAdd;
         }
-        this.length++;
+        this.setLength();
     }
     pop() {
         if (this.length === 0 || !!!this.head)
@@ -35,7 +35,7 @@ class SinglyLinkedList {
         const toReturn = current === null || current === void 0 ? void 0 : current.next;
         current ? current.next = null : null;
         this.tail = current;
-        this.length--;
+        this.setLength();
         if (this.length === 0) {
             this.head = null;
             this.tail = null;
@@ -58,6 +58,7 @@ class SinglyLinkedList {
         if (this.length === 0) {
             this.tail = null;
         }
+        this.setLength();
         return toReturn;
     }
     unshift(val) {
@@ -70,25 +71,87 @@ class SinglyLinkedList {
             newNode.next = this.head;
             this.head = newNode;
         }
-        this.length++;
+        this.setLength();
     }
     get(ind) {
         if (ind < 0)
             return null;
         let current = this.head;
         for (let i = 0; i < ind; i++) {
-            current = current.next;
+            if (current) {
+                current = current.next;
+            }
         }
         return current;
     }
+    set(ind, val) {
+        if (!(ind < 0 && ind >= this.length)) {
+            let current = this.head;
+            for (let i = 0; i < ind; i++) {
+                if (current && !!current.next) {
+                    current = current.next;
+                }
+            }
+            if (current)
+                current.val = val;
+        }
+        this.setLength();
+    }
+    insert(ind, val) {
+        if (!(ind < 0 && ind >= this.length)) {
+            let current = this.head;
+            for (let i = 1; i < ind; i++) {
+                if (current && !!current.next) {
+                    current = current.next;
+                }
+            }
+            if (!!!current)
+                return;
+            const next = current.next;
+            const node = new LLNode(val);
+            current.next = node;
+            node.next = next;
+        }
+        this.setLength();
+    }
+    remove(ind) {
+        if (!(ind < 0 && ind >= this.length)) {
+            let current = this.head;
+            for (let i = 1; i < ind; i++) {
+                if (current && !!current.next) {
+                    current = current.next;
+                }
+            }
+            if (!!!current)
+                return;
+            if (current.next && !!current.next.next) {
+                const next = current.next.next;
+                current.next = next;
+            }
+            else {
+                current.next = null;
+            }
+        }
+        this.setLength();
+    }
+    setLength() {
+        let count = 0;
+        let current = this.head;
+        while (current) {
+            count++;
+            current = current.next;
+        }
+        this.length = count;
+    }
 }
-const first = new LLNode("Hi");
-first.next = new LLNode("there");
-first.next.next = new LLNode("how");
-first.next.next.next = new LLNode("are");
-first.next.next.next.next = new LLNode("you");
+//const first: LLNode<String> = new LLNode("Hi");
+//first.next = new LLNode("there");
+//first.next.next = new LLNode("how");
+//first.next.next.next = new LLNode("are");
+//first.next.next.next.next = new LLNode("you");
 const myList = new SinglyLinkedList();
-myList.push("first val");
+const first = "first val";
+myList.push(first);
 myList.push("second val");
 myList.push("third val");
 myList.push("last val");
@@ -108,3 +171,8 @@ myList.traverse();
 console.log(myList.length);
 const gottenNode = myList.get(1);
 console.log(`Got a node at index 1: val: ${gottenNode === null || gottenNode === void 0 ? void 0 : gottenNode.val}, next: ${gottenNode === null || gottenNode === void 0 ? void 0 : gottenNode.next}`);
+myList.set(3, "final val");
+myList.traverse();
+myList.insert(2, "one before last");
+myList.traverse();
+console.log(myList.head, myList.tail, myList.length);

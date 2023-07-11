@@ -22,7 +22,7 @@ class SinglyLinkedList<T> {
         this.tail = null;
         this.length = 0;
     }
-    push(val: T){
+    push(val: T): void{
         const nodeToAdd = new LLNode(val);
         if(this.length === 0 || !!!this.head || !!!this.tail){
             this.head = nodeToAdd;
@@ -31,7 +31,7 @@ class SinglyLinkedList<T> {
             this.tail.next = nodeToAdd;
             this.tail = nodeToAdd;
         }
-        this.length++;
+        this.setLength();
     }
     pop(): LinkedListNode<T> | null{
         if(this.length === 0 || !!!this.head) return null;
@@ -44,14 +44,14 @@ class SinglyLinkedList<T> {
         const toReturn = current?.next;
         current ? current.next=null:null;
         this.tail = current;
-        this.length--;
+        this.setLength();
         if(this.length===0){
             this.head = null;
             this.tail = null;
         }
         return toReturn;
     }
-    traverse(){
+    traverse(): void{
         let current: LLNode<T>|null = this.head;
         while(current){
             console.log(current.val);
@@ -66,9 +66,10 @@ class SinglyLinkedList<T> {
         if(this.length===0){
             this.tail = null;
         }
+        this.setLength();
         return toReturn;
     }
-    unshift(val: T){
+    unshift(val: T): void{
         const newNode = new LLNode(val);
         if(!!!this.head){
             this.head = newNode;
@@ -77,13 +78,15 @@ class SinglyLinkedList<T> {
             newNode.next = this.head;
             this.head = newNode;
         }
-        this.length++;
+        this.setLength();
     }
     get(ind: number): LinkedListNode<T>|null{
         if(ind < 0) return null;
         let current: LLNode<T>|null = this.head;
         for(let i = 0; i<ind; i++){
-            current = current?.next;
+            if(current){
+                current = current.next;
+            }
         }
         return current;
     }
@@ -97,16 +100,62 @@ class SinglyLinkedList<T> {
                 }
             if(current) current.val = val;
         }
+        this.setLength();
+    }
+    insert(ind: number, val: T): void {
+        if(!(ind < 0 && ind >=this.length)){
+            let current = this.head;
+            for(let i = 1; i<ind; i++) {
+                if(current && !!current.next){
+                    current = current.next;
+                    }
+                }
+            if(!!!current) return;
+            const next = current.next;
+            const node: LinkedListNode<T> = new LLNode(val);
+            current.next = node;
+            node.next = next;
+         }
+        this.setLength();
+    } 
+    remove(ind: number): void {
+        if(!(ind < 0 && ind >=this.length)){
+            let current = this.head;
+            for(let i = 1; i<ind; i++) {
+                if(current && !!current.next){
+                    current = current.next;
+                    }
+                }
+            if(!!!current) return;
+            if(current.next&&!!current.next.next){
+                const next = current.next.next;
+                current.next = next;
+            } else {
+                current.next = null;
+            }
+         }
+        this.setLength();
+    }
+    setLength(): void {
+        let count = 0;
+        let current = this.head;
+        while(current) {
+            count++;
+            current = current.next;
+        }
+        this.length = count;
+    }
 }
 
-const first: LLNode<String> = new LLNode("Hi");
-first.next = new LLNode("there");
-first.next.next = new LLNode("how");
-first.next.next.next = new LLNode("are");
-first.next.next.next.next = new LLNode("you");
+//const first: LLNode<String> = new LLNode("Hi");
+//first.next = new LLNode("there");
+//first.next.next = new LLNode("how");
+//first.next.next.next = new LLNode("are");
+//first.next.next.next.next = new LLNode("you");
 
 const myList = new SinglyLinkedList();
-myList.push("first val");
+const first: string = "first val";
+myList.push(first);
 myList.push("second val");
 myList.push("third val");
 myList.push("last val");
@@ -127,3 +176,9 @@ console.log(myList.length);
 
 const gottenNode: LinkedListNode<any>|null = myList.get(1);
 console.log(`Got a node at index 1: val: ${gottenNode?.val}, next: ${gottenNode?.next}`);
+
+myList.set(3, "final val");
+myList.traverse();
+myList.insert(2, "one before last");
+myList.traverse();
+console.log(myList.head, myList.tail, myList.length);
