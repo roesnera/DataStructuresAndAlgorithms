@@ -149,6 +149,26 @@ class SinglyLinkedList {
         }
         this.setLength();
     }
+    reverse() {
+        if (this.length > 0 && this.head) {
+            const nodeArr = [];
+            let current = this.head;
+            nodeArr.push(current);
+            while (current && current.next) {
+                current = current.next;
+                nodeArr.push(current);
+            }
+            console.log(nodeArr);
+            this.head = nodeArr.pop();
+            current = this.head;
+            for (let i = nodeArr.length - 1; i >= 0; i--) {
+                current.next = nodeArr.pop();
+                current = current.next;
+            }
+            this.tail = current;
+            this.tail.next = null;
+        }
+    }
     setLength() {
         let count = 0;
         let current = this.head;
@@ -191,3 +211,5 @@ myList.traverse();
 myList.insert(2, "one before last");
 myList.traverse();
 console.log(myList.head, myList.tail, myList.length);
+myList.reverse();
+myList.traverse();
