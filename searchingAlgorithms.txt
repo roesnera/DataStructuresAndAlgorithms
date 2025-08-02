@@ -8,7 +8,7 @@ binary search
     - searches at the middle point of an array of elements
     - only works on sorted arrays!!!!
     - leverages the fact that the array is sorted by comparing the item being sought with the item at halfway
-    - time complexity best: O(1), worst: O(log(n)), average: O(log(n))
+    - 
 naive string search
 
 KPM sring search
